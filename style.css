@@ -6,6 +6,7 @@ body {
 
 .header {
     margin: 0 auto;
+    margin-bottom: 10px;
     background-color: black;
     text-align: center;
 }
@@ -17,3 +18,37 @@ h2 {
     padding-bottom: 25px;
     font-size: 3em;
 }
+
+.main-container {
+    display: flex;
+    /* flex-direction: row;
+    flex-wrap: wrap; */
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.search-section {
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    width: 20vw;
+    height: 80vh;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.content {
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    width: 75vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.search-result {
+    height: 250px;
+}
+
+
+
