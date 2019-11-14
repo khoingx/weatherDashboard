@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
+    <!-- <script src="script.js"></script> -->
     <title>Weather Dashboard</title>
 </head>
 
@@ -23,8 +24,10 @@
         <div class="search-section">
             <section>
                 <h3>Search for a city</h3>
-                <input type="text">
-                <button></button>
+                <form action="">
+                    <input type="text" id="cityName">
+                    <input id="searchBtn" type="submit" value="Search">
+                </form>
             </section>
             <ul>
                 <li></li>
@@ -37,7 +40,6 @@
         <div class="content">
 
             <div class=" search-result">
-                <h3>City name</h3>
 
             </div>
 
@@ -50,6 +52,64 @@
         </div>
 
     </div>
+
+    <!-- // Example of API call
+    // http://api.openweathermap.org/data/2.5/box/city?bbox=12,32,15,37,10
+    // api.openweathermap.org/data/2.5/weather?q=London
+    // api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=d7f9888f59f035455ce59bb330b974bc
+
+    //my weather API key d7f9888f59f035455ce59bb330b974bc
+    // Search weather by city name -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+
+        $("#searchBtn").on("click", function (event) {
+            event.preventDefault();
+
+            var userInput = $("#cityName").val();
+
+            var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + userInput + "&APPID=d7f9888f59f035455ce59bb330b974bc";
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function (response) {
+                console.log(response);
+                console.log(response.name);
+                console.log(response.main.temp);
+                console.log(response.main.humidity);
+
+                // Create variable to store response name
+                var name = response.name;
+                
+                // Create an HTML element to store variable name's value
+
+                var elementH2 = $("<h2>").text(name);
+
+                // append element H2 to Div with classname = search result
+
+                $(".search-result").append(elementH2);
+                
+                //Create a variable to store temperature data
+                var temp = response.main.temp;
+                
+                //Create an HTML element to store a variable
+
+                var elementP1 = $("<p>").text(temp);
+
+                $(".search-result").append("Temperature: " + elementP1);
+            })
+
+        })
+
+
+
+
+
+
+    </script>
+
 </body>
 
 </html>
