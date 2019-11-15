@@ -70,7 +70,7 @@
 
             var userInput = $("#cityName").val();
 
-            var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + userInput + "&APPID=d7f9888f59f035455ce59bb330b974bc";
+            var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + userInput + "&units=imperial" + "&APPID=d7f9888f59f035455ce59bb330b974bc";
             $.ajax({
                 url: queryURL,
                 method: "GET"
@@ -80,25 +80,62 @@
                 console.log(response.main.temp);
                 console.log(response.main.humidity);
 
-                // Create variable to store response name
+                //create a variable that store an icon code
+
+                var iconCode = response.weather[0].icon;
+                var iconUrl = "http://openweathermap.org/img/wn/" + iconCode + "@2x.png";
+                var iconImage = $("<img>").attr('src', iconUrl);
+                iconImage.addClass("icon-image");
+
+                // Create variable to store city name
                 var name = response.name;
                 
-                // Create an HTML element to store variable name's value
+                // Create an HTML element to store variable city name
 
-                var elementH2 = $("<h2>").text(name);
+                var elementH3 = $("<p>").text(name);
+               
 
-                // append element H2 to Div with classname = search result
+                // append element H3 to Div with classname = search result
 
-                $(".search-result").append(elementH2);
+                // $(".search-result").append(elementH3);
+                // $(".search-result").append(iconImage);
+                $(".search-result").append(elementH3);
+                $(".search-result").append(iconImage);
+
+
                 
+
                 //Create a variable to store temperature data
-                var temp = response.main.temp;
+                var tempF = response.main.temp;
+
+                //Create an HTML element and assign temperature data to it
+
+                var elementP1 = $("<p>").text("Temperature: " + tempF);
+
+                // append temperature data to Div with classname = search result
+
+                $(".search-result").append(elementP1);
                 
-                //Create an HTML element to store a variable
 
-                var elementP1 = $("<p>").text(temp);
+                //create a variable to store humidity data
 
-                $(".search-result").append("Temperature: " + elementP1);
+                var humidity = response.main.humidity;
+
+                // create a HTML element and assign humidity data to it
+
+                var elementP2 = $("<p>").text("Humidity: " + humidity + "%");
+
+                //  append humidity data to Div with classname = search result   
+
+                $(".search-result").append(elementP2);
+
+                //create a varialbe to store wind speed value
+
+                var windSpeed = response.wind.speed;
+
+                var elementP3 = $("<p>").text("Wind Speed: " + windSpeed + " MPH");
+
+                $(".search-result").append(elementP3);
             })
 
         })

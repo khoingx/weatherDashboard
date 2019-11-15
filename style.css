@@ -21,8 +21,6 @@ h2 {
 
 .main-container {
     display: flex;
-    /* flex-direction: row;
-    flex-wrap: wrap; */
     flex-flow: row wrap;
     justify-content: space-between;
 }
@@ -38,17 +36,31 @@ h2 {
 }
 
 .content {
-    border-color: black;
-    border-style: solid;
-    border-width: 1px;
     width: 75vw;
     display: flex;
     flex-direction: column;
+    margin-right: 10px;
+    box-sizing: border-box;
 }
 
 .search-result {
+    border-color: black;
+    border-style: solid;
+    border-width: 0.5px;
+    height: 300px;
+    margin-bottom: 10px;
+    padding-left: 20px;
+}
+
+.fiveday {
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
     height: 250px;
 }
 
-
+.icon-image {
+    width 100px;
+    height: 50px;
+}
 
