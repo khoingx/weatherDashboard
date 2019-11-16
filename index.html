@@ -62,6 +62,7 @@
     // Search weather by city name -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
     <script type="text/javascript">
 
@@ -80,6 +81,8 @@
                 console.log(response.main.temp);
                 console.log(response.main.humidity);
 
+                var currentTime = moment().format('L');;
+
                 //create a variable that store an icon code
 
                 var iconCode = response.weather[0].icon;
@@ -89,10 +92,10 @@
 
                 // Create variable to store city name
                 var name = response.name;
-                
+
                 // Create an HTML element to store variable city name
 
-                var elementH3 = $("<p>").text(name);
+                var elementH3 = $("<p>").text(name + " " + currentTime);
                 elementH3.addClass("title");
 
                 // append element H3 to Div with classname = search result
@@ -103,19 +106,19 @@
                 $(".search-result").append(iconImage);
 
 
-                
+
 
                 //Create a variable to store temperature data
                 var tempF = response.main.temp;
 
                 //Create an HTML element and assign temperature data to it
 
-                var elementP1 = $("<p>").text("Temperature: " + tempF);
+                var elementP1 = $("<p>").html("Temperature: " + tempF + "&#8457;");
 
                 // append temperature data to Div with classname = search result
 
                 $(".search-result").append(elementP1);
-                
+
 
                 //create a variable to store humidity data
 
@@ -136,8 +139,26 @@
                 var elementP3 = $("<p>").text("Wind Speed: " + windSpeed + " MPH");
 
                 $(".search-result").append(elementP3);
-            })
 
+                //set variable for UV index API call
+                // http://api.openweathermap.org/data/2.5/uvi?appid={appid}&lat={lat}&lon={lon}
+
+                var uvIndex = "http://api.openweathermap.org/data/2.5/uvi?appid=d7f9888f59f035455ce59bb330b974bc&lat=" + response.coord.lat + "&lon=" + response.coord.lon ;
+                console.log(uvIndex);
+                $.ajax({
+                    url: uvIndex,
+                    method: "GET"
+                }).then(function (a) {
+                    console.log(a);
+
+                    // create a variable that stores UV data value
+                    var uvValue = a.value;
+                    var elementP3 = $("<p>").text("UV index: " + uvValue);
+                    $(".search-result").append(elementP3);
+
+                })
+
+            })
         })
 
 
