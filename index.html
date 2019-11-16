@@ -45,7 +45,10 @@
 
             <!-- 5 days forecast section -->
             <div class= "five-day">
-                <h3>5-day Forecast</h3> <br>
+                <h3>5-day Forecast</h3>
+                <div class="forecast-result">
+
+                </div>
 
             </div>
 
@@ -166,17 +169,29 @@
             }).then(function(b){
                 // console.log(b);
                 console.log(b.list);
+
                 var futureWeather = b.list;
+
                 for (i = 4; i < futureWeather.length ; i = i+8 ) {
+
+                    // add weather icon 
+                    var forecastIcon = futureWeather[i].weather[0].icon;
+                    let iconUrl = "http://openweathermap.org/img/wn/" + forecastIcon + "@2x.png";
+                    var forecastImage = $("<img>").attr('src', iconUrl);
+                    forecastImage.addClass("icon-image");
+
                     var forecastVal = futureWeather[i].main.temp;
                     var futureDate = futureWeather[i].dt_txt;
                     var forecastHu = futureWeather[i].main.humidity;
 
-                    var forecastCard = $("<div>").text(futureDate + " " + forecastVal + " " + forecastHu);
+                    var forecastCard = $("<div>").html(futureDate + "Temperature: " + forecastVal + "&#8457;" + " " + "Humidity: " + forecastHu +"%");
                     forecastCard.addClass("card");
-        
 
-                    $(".five-day").append(forecastCard);
+
+                    // $(".forecast-result").append(forecastImage);
+                    $(".forecast-result").append(forecastCard);
+                    
+
                 }
 
             })
