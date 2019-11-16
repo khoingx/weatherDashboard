@@ -44,8 +44,8 @@
             </div>
 
             <!-- 5 days forecast section -->
-            <div class=" fiveday">
-                <h3>5-day Forecast</h3>
+            <div class= "five-day">
+                <h3>5-day Forecast</h3> <br>
 
             </div>
 
@@ -100,13 +100,8 @@
 
                 // append element H3 to Div with classname = search result
 
-                // $(".search-result").append(elementH3);
-                // $(".search-result").append(iconImage);
                 $(".search-result").append(elementH3);
                 $(".search-result").append(iconImage);
-
-
-
 
                 //Create a variable to store temperature data
                 var tempF = response.main.temp;
@@ -141,7 +136,6 @@
                 $(".search-result").append(elementP3);
 
                 //set variable for UV index API call
-                // http://api.openweathermap.org/data/2.5/uvi?appid={appid}&lat={lat}&lon={lon}
 
                 var uvIndex = "http://api.openweathermap.org/data/2.5/uvi?appid=d7f9888f59f035455ce59bb330b974bc&lat=" + response.coord.lat + "&lon=" + response.coord.lon ;
                 console.log(uvIndex);
@@ -149,7 +143,6 @@
                     url: uvIndex,
                     method: "GET"
                 }).then(function (a) {
-                    console.log(a);
 
                     // create a variable that stores UV data value
                     var uvValue = a.value;
@@ -159,10 +152,36 @@
                 })
 
             })
+
+        // Five days forecast
+
+        // var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + userInput + "&units=imperial" + "&APPID=d7f9888f59f035455ce59bb330b974bc";
+            var fivedayURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + userInput + "&units=imperial" + "&APPID=d7f9888f59f035455ce59bb330b974bc";
+        
+        // API call to get 5 day forecast value
+
+            $.ajax({
+                url: fivedayURL,
+                method: "GET"
+            }).then(function(b){
+                // console.log(b);
+                console.log(b.list);
+                var futureWeather = b.list;
+                for (i = 4; i < futureWeather.length ; i = i+8 ) {
+                    var forecastVal = futureWeather[i].main.temp;
+                    var futureDate = futureWeather[i].dt_txt;
+                    var forecastHu = futureWeather[i].main.humidity;
+
+                    var forecastCard = $("<div>").text(futureDate + " " + forecastVal + " " + forecastHu);
+                    forecastCard.addClass("card");
+        
+
+                    $(".five-day").append(forecastCard);
+                }
+
+            })
+
         })
-
-
-
 
 
 
