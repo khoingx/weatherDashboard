@@ -89,7 +89,7 @@
                 //create a variable that store an icon code
 
                 var iconCode = response.weather[0].icon;
-                var iconUrl = "http://openweathermap.org/img/wn/" + iconCode + "@2x.png";
+                var iconUrl = "https://openweathermap.org/img/wn/" + iconCode + "@2x.png";
                 var iconImage = $("<img>").attr('src', iconUrl);
                 iconImage.addClass("icon-image");
 
@@ -140,7 +140,7 @@
 
                 //set variable for UV index API call
 
-                var uvIndex = "http://api.openweathermap.org/data/2.5/uvi?appid=d7f9888f59f035455ce59bb330b974bc&lat=" + response.coord.lat + "&lon=" + response.coord.lon ;
+                var uvIndex = "https://api.openweathermap.org/data/2.5/uvi?appid=d7f9888f59f035455ce59bb330b974bc&lat=" + response.coord.lat + "&lon=" + response.coord.lon ;
                 console.log(uvIndex);
                 $.ajax({
                     url: uvIndex,
@@ -159,7 +159,7 @@
         // Five days forecast
 
         // var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + userInput + "&units=imperial" + "&APPID=d7f9888f59f035455ce59bb330b974bc";
-            var fivedayURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + userInput + "&units=imperial" + "&APPID=d7f9888f59f035455ce59bb330b974bc";
+            var fivedayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + userInput + "&units=imperial" + "&APPID=d7f9888f59f035455ce59bb330b974bc";
         
         // API call to get 5 day forecast value
 
@@ -176,7 +176,7 @@
 
                     // add weather icon 
                     var forecastIcon = futureWeather[i].weather[0].icon;
-                    let iconUrl = "http://openweathermap.org/img/wn/" + forecastIcon + "@2x.png";
+                    let iconUrl = "https://openweathermap.org/img/wn/" + forecastIcon + "@2x.png";
                     var forecastImage = $("<img>").attr('src', iconUrl);
                     forecastImage.addClass("icon-image");
 
