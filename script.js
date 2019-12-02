@@ -5,7 +5,7 @@
 
 //my weather API key d7f9888f59f035455ce59bb330b974bc
 // Search weather by city name
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=London&APPID=d7f9888f59f035455ce59bb330b974bc";
 
