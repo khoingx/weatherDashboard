@@ -74,7 +74,7 @@
 
             var userInput = $("#cityName").val();
 
-            var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + userInput + "&units=imperial" + "&APPID=d7f9888f59f035455ce59bb330b974bc";
+            var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + userInput + "&units=imperial" + "&APPID=d7f9888f59f035455ce59bb330b974bc";
             $.ajax({
                 url: queryURL,
                 method: "GET"
